@@ -3,10 +3,15 @@ import { getFoods } from './data/firestore.js';
 import Card from './components/card/card.jsx';
 import './App.css'
 import Cart from './components/carts/cart.jsx';
+
+const telegram = window.Telegram.WebApp;
+
 const App = () => {
   const [foods, setFoods] = useState([]);
   const [cartItems, setCartItems] = useState([]);
-
+useEffect(()=>{
+  telegram.ready();
+})
   const onAddItem = item => {
 		const existItem = cartItems.find(c => c.id == item.id);
 
@@ -47,8 +52,8 @@ const App = () => {
       });
   }, []);
   const onCheckout = () => {
-		// telegram.MainButton.text = 'Sotib olish :)';
-		// telegram.MainButton.show();
+		telegram.MainButton.text = 'Sotib olish :)';
+		telegram.MainButton.show();
 	};
   return (
     <>
